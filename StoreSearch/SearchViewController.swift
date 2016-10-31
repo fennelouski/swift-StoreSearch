@@ -12,10 +12,16 @@ class SearchViewController: UIViewController {
   
   @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var tableView: UITableView!
+  
+  let topMarginForSearchBar: CGFloat = 64
+  let noMargin: CGFloat = 0
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    tableView.contentInset = UIEdgeInsets(top: topMarginForSearchBar,
+                                          left: noMargin,
+                                          bottom: noMargin,
+                                          right: noMargin)
   }
 
   override func didReceiveMemoryWarning() {
