@@ -15,6 +15,7 @@ class SearchViewController: UIViewController {
   
   let topMarginForSearchBar: CGFloat = 64
   let noMargin: CGFloat = 0
+  let rowHeight: CGFloat = 88
   var searchResults: [SearchResult] = []
   var hasSearched = false
 
@@ -27,6 +28,7 @@ class SearchViewController: UIViewController {
                                           right: noMargin)
     let cellNib = UINib(nibName: "SearchResultCell", bundle: nil)
     tableView.register(cellNib, forCellReuseIdentifier: "SearchResultCell")
+    tableView.rowHeight = rowHeight
   }
 
   override func didReceiveMemoryWarning() {
