@@ -15,7 +15,7 @@ class SearchViewController: UIViewController {
   
   let topMarginForSearchBar: CGFloat = 64
   let noMargin: CGFloat = 0
-  let rowHeight: CGFloat = 88
+  let rowHeight: CGFloat = 80
   var searchResults: [SearchResult] = []
   var hasSearched = false
 
@@ -26,16 +26,20 @@ class SearchViewController: UIViewController {
                                           left: noMargin,
                                           bottom: noMargin,
                                           right: noMargin)
-    let cellNib = UINib(nibName: "SearchResultCell", bundle: nil)
-    tableView.register(cellNib, forCellReuseIdentifier: "SearchResultCell")
+    let cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
+    tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
     tableView.rowHeight = rowHeight
   }
 
+  struct TableViewCellIdentifiers {
+    static let searchResultCell = "SearchResultCell"
+  }
+  
+  // Mark: - Memory Warning
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-
 
 }
 
@@ -75,7 +79,7 @@ extension SearchViewController: UITableViewDataSource {
   }
  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell",
+    let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell,
                                              for: indexPath) as! SearchResultCell
     
     if searchResults.count == 0 {
