@@ -46,9 +46,12 @@ extension SearchViewController: UISearchBarDelegate {
     
     tableView.reloadData()
   }
+  
+  func position(for bar: UIBarPositioning) -> UIBarPosition {
+    return .topAttached
+  }
 }
 
-// Mark: - DataSource
 extension SearchViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return searchResults.count
@@ -69,7 +72,6 @@ extension SearchViewController: UITableViewDataSource {
   
 }
 
-// Mark: - TableView Delegate
 extension SearchViewController: UITableViewDelegate {
 }
 
