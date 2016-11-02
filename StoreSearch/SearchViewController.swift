@@ -13,27 +13,30 @@ class SearchViewController: UIViewController {
   @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var tableView: UITableView!
   
-  let topMarginForSearchBar: CGFloat = 64
-  let noMargin: CGFloat = 0
-  let rowHeight: CGFloat = 80
   var searchResults: [SearchResult] = []
   var hasSearched = false
-
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    tableView.contentInset = UIEdgeInsets(top: topMarginForSearchBar,
-                                          left: noMargin,
-                                          bottom: noMargin,
-                                          right: noMargin)
-    let cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
-    tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
-    tableView.rowHeight = rowHeight
+  
+  struct StandardMarginAndHeights {
+    static let topMarginForSearchBar: CGFloat = 64
+    static let noMargin: CGFloat = 0
+    static let rowHeight: CGFloat = 80
   }
-
   struct TableViewCellIdentifiers {
     static let searchResultCell = "SearchResultCell"
   }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    tableView.contentInset = UIEdgeInsets(top: StandardMarginAndHeights.topMarginForSearchBar,
+                                          left: StandardMarginAndHeights.noMargin,
+                                          bottom: StandardMarginAndHeights.noMargin,
+                                          right: StandardMarginAndHeights.noMargin)
+    let cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
+    tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
+    tableView.rowHeight = StandardMarginAndHeights.rowHeight
+  }
+
+
   
   // Mark: - Memory Warning
   override func didReceiveMemoryWarning() {
