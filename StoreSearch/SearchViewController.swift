@@ -43,6 +43,12 @@ class SearchViewController: UIViewController {
     tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
     searchBar.becomeFirstResponder()
   }
+  
+  func iTunesUrl(searchText: String) -> URL {
+    let urlString = String(format: "https://itunes.apple.com/search?term=%@", searchText)
+    let url = URL(string: urlString)
+    return url!
+  }
 
 
   
@@ -56,21 +62,19 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    searchResults = []
     
-    searchBar.resignFirstResponder()
-    
-    if searchBar.text != "Justin Bieber" {
-      for i in 0...2 {
-        let searchResult = SearchResult()
-        searchResult.name = String(format: "Fake Result %d for", i)
-        searchResult.artistName = searchBar.text!
-        searchResults.append(searchResult)
-      }
+    if !searchBar.text!.isEmpty {
+      searchBar.resignFirstResponder()
+      
+      searchResults = []
+      hasSearched = true
+      
+      let url = iTunesUrl(searchText: searchBar.text!)
+      print("URL: '\(url)'")
+      
+      tableView.reloadData()
     }
 
-    hasSearched = true
-    tableView.reloadData()
   }
   
   func position(for bar: UIBarPositioning) -> UIBarPosition {
