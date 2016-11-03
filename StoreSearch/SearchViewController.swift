@@ -21,9 +21,12 @@ class SearchViewController: UIViewController {
     static let noMargin: CGFloat = 0
     static let rowHeight: CGFloat = 80
   }
+  
   struct TableViewCellIdentifiers {
     static let searchResultCell = "SearchResultCell"
+    static let nothingFoundCell = "NothingFoundCell"
   }
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
