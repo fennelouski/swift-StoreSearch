@@ -45,7 +45,8 @@ class SearchViewController: UIViewController {
   }
   
   func iTunesUrl(searchText: String) -> URL {
-    let urlString = String(format: "https://itunes.apple.com/search?term=%@", searchText)
+    let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+    let urlString = String(format: "https://itunes.apple.com/search?term=%@", escapedSearchText)
     let url = URL(string: urlString)
     return url!
   }
