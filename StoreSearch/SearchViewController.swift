@@ -59,6 +59,18 @@ class SearchViewController: UIViewController {
       return nil
     }
   }
+  
+  func parse(json: String) -> [String: Any]? {
+  guard let data = json.data(using: .utf8, allowLossyConversion: false) else { return nil }
+  
+  do {
+    return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+  } catch {
+    print("JSON Error: '\(error)'")
+    return nil
+  }
+  
+  }
 
   
   // Mark: - Memory Warning
