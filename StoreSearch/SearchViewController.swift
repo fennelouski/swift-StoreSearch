@@ -51,6 +51,14 @@ class SearchViewController: UIViewController {
     return url!
   }
 
+  func performStoreRequest(with url: URL) -> String? {
+    do {
+      return try String(contentsOf: url, encoding: .utf8)
+    } catch {
+      print("Download Error: \(error)")
+      return nil
+    }
+  }
 
   
   // Mark: - Memory Warning
@@ -72,6 +80,10 @@ extension SearchViewController: UISearchBarDelegate {
       
       let url = iTunesUrl(searchText: searchBar.text!)
       print("URL: '\(url)'")
+      if let jsonString = performStoreRequest(with: url) {
+        print("Recieved JSON string '\(jsonString)'")
+      }
+      
       
       tableView.reloadData()
     }
