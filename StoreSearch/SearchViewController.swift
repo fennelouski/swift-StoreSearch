@@ -61,17 +61,27 @@ class SearchViewController: UIViewController {
   }
   
   func parse(json: String) -> [String: Any]? {
-  guard let data = json.data(using: .utf8, allowLossyConversion: false) else { return nil }
+    guard let data = json.data(using: .utf8, allowLossyConversion: false) else { return nil }
   
-  do {
-    return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-  } catch {
-    print("JSON Error: '\(error)'")
-    return nil
-  }
-  
+    do {
+      return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+    } catch {
+      print("JSON Error: '\(error)'")
+      return nil
+    }
   }
 
+  func showNetworkError() {
+    let alert = UIAlertController(
+      title: "Whoops...",
+      message: "There was an error readign from the iTunes Store. Please try again.",
+      preferredStyle: .alert)
+    
+    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alert.addAction(action)
+    
+    present(alert, animated: true, completion: nil)
+  }
   
   // Mark: - Memory Warning
   override func didReceiveMemoryWarning() {
@@ -92,14 +102,18 @@ extension SearchViewController: UISearchBarDelegate {
       
       let url = iTunesUrl(searchText: searchBar.text!)
       print("URL: '\(url)'")
+      
       if let jsonString = performStoreRequest(with: url) {
         print("Recieved JSON string '\(jsonString)'")
+        if let jsonDictionary = parse(json: jsonString) {
+          print("Dictionary \(jsonDictionary)")
+          tableView.reloadData()
+          return
+        }
       }
       
-      
-      tableView.reloadData()
+      showNetworkError()
     }
-
   }
   
   func position(for bar: UIBarPositioning) -> UIBarPosition {
