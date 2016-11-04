@@ -70,6 +70,21 @@ class SearchViewController: UIViewController {
       return nil
     }
   }
+  
+  func parse(dictionary: [String: Any]) {
+    guard let array = dictionary["results"] as? [Any] else {
+      print("Expected 'results' array")
+      return
+    }
+    
+    for resultDict in array {
+      if let resultDict = resultDict as? [String: Any] {
+        if let wrapperType = resultDict["wrapperType"] as? String, let kind = resultDict["kind"] as? String {
+          print("wrapperType: \(wrapperType), kind: \(kind)")
+        }
+      }
+    }
+  }
 
   func showNetworkError() {
     let alert = UIAlertController(
@@ -107,6 +122,7 @@ extension SearchViewController: UISearchBarDelegate {
         print("Recieved JSON string '\(jsonString)'")
         if let jsonDictionary = parse(json: jsonString) {
           print("Dictionary \(jsonDictionary)")
+          parse(dictionary: jsonDictionary)
           tableView.reloadData()
           return
         }
