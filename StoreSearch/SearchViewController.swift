@@ -54,15 +54,6 @@ class SearchViewController: UIViewController {
     let url = URL(string: urlString)
     return url!
   }
-
-  func performStoreRequest(with url: URL) -> String? {
-    do {
-      return try String(contentsOf: url, encoding: .utf8)
-    } catch {
-      print("Download Error: \(error)")
-      return nil
-    }
-  }
   
   func parse(json: String) -> [String: Any]? {
     guard let data = json.data(using: .utf8, allowLossyConversion: false) else { return nil }
@@ -227,7 +218,6 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    
     if !searchBar.text!.isEmpty {
       searchBar.resignFirstResponder()
       
@@ -237,25 +227,17 @@ extension SearchViewController: UISearchBarDelegate {
       searchResults = []
       hasSearched = true
       
-      let queue = DispatchQueue.global()
-      
-      queue.async {
-        let url = self.iTunesUrl(searchText: searchBar.text!)
-        
-        if let jsonString = self.performStoreRequest(with: url),
-           let jsonDictionary = self.parse(json: jsonString) {
-          self.searchResults = self.parse(dictionary: jsonDictionary)
-          self.searchResults.sort(by: <)
-          DispatchQueue.main.async {
-            self.isLoading = false
-            self.tableView.reloadData()
-          }
-          return
+      let url = iTunesUrl(searchText: searchBar.text!)
+      let session = URLSession.shared
+      let dataTask = session.dataTask(with: url, completionHandler: {
+        data, response, error in
+        if let error = error {
+          print("Failure! \(error)")
+        } else {
+          print("Success! \(response)")
         }
-        DispatchQueue.main.async {
-          self.showNetworkError()
-        }
-      }
+      })
+      dataTask.resume()
     }
   }
   
