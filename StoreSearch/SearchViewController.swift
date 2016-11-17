@@ -242,23 +242,20 @@ extension SearchViewController: UISearchBarDelegate {
       queue.async {
         let url = self.iTunesUrl(searchText: searchBar.text!)
         
-        if let jsonString = self.performStoreRequest(with: url) {
-          if let jsonDictionary = self.parse(json: jsonString) {
-            self.searchResults = self.parse(dictionary: jsonDictionary)
-            self.searchResults.sort(by: <)
-            DispatchQueue.main.async {
-              self.isLoading = false
-              self.tableView.reloadData()
-            }
-            return
-          }
+        if let jsonString = self.performStoreRequest(with: url),
+           let jsonDictionary = self.parse(json: jsonString) {
+          self.searchResults = self.parse(dictionary: jsonDictionary)
+          self.searchResults.sort(by: <)
           DispatchQueue.main.async {
-            self.showNetworkError()
+            self.isLoading = false
+            self.tableView.reloadData()
           }
+          return
+        }
+        DispatchQueue.main.async {
+          self.showNetworkError()
         }
       }
-      
-
     }
   }
   
