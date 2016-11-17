@@ -50,14 +50,12 @@ class SearchViewController: UIViewController {
   
   func iTunesUrl(searchText: String) -> URL {
     let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-    let urlString = String(format: "https://itunes.apple.com/search?term=%@", escapedSearchText)
+    let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200", escapedSearchText)
     let url = URL(string: urlString)
     return url!
   }
   
-  func parse(json: String) -> [String: Any]? {
-    guard let data = json.data(using: .utf8, allowLossyConversion: false) else { return nil }
-  
+  func parse(json data: Data) -> [String: Any]? {
     do {
       return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
     } catch {
@@ -233,8 +231,25 @@ extension SearchViewController: UISearchBarDelegate {
         data, response, error in
         if let error = error {
           print("Failure! \(error)")
+        } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+          if let data = data, let jsonDictionary = self.parse(json: data) {
+            self.searchResults = self.parse(dictionary: jsonDictionary)
+            self.searchResults.sort(by: <)
+            
+            DispatchQueue.main.async {
+              self.isLoading = false
+              self.tableView.reloadData()
+            }
+            return
+          }
         } else {
-          print("Success! \(response)")
+          print("Failure! \(response)")
+        }
+        DispatchQueue.main.async {
+          self.hasSearched = false
+          self.isLoading = false
+          self.tableView.reloadData()
+          self.showNetworkError()
         }
       })
       dataTask.resume()
