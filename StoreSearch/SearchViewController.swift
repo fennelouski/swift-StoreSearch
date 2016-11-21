@@ -16,6 +16,7 @@ class SearchViewController: UIViewController {
   var searchResults: [SearchResult] = []
   var hasSearched = false
   var isLoading = false
+  var dataTask: URLSessionDataTask?
   
   struct StandardMarginAndHeights {
     static let topMarginForSearchBar: CGFloat = 64
@@ -219,6 +220,7 @@ extension SearchViewController: UISearchBarDelegate {
     if !searchBar.text!.isEmpty {
       searchBar.resignFirstResponder()
       
+      dataTask?.cancel()
       isLoading = true
       tableView.reloadData()
       
@@ -227,7 +229,7 @@ extension SearchViewController: UISearchBarDelegate {
       
       let url = iTunesUrl(searchText: searchBar.text!)
       let session = URLSession.shared
-      let dataTask = session.dataTask(with: url, completionHandler: {
+      dataTask = session.dataTask(with: url, completionHandler: {
         data, response, error in
         if let error = error {
           print("Failure! \(error)")
@@ -252,7 +254,7 @@ extension SearchViewController: UISearchBarDelegate {
           self.showNetworkError()
         }
       })
-      dataTask.resume()
+      dataTask?.resume()
     }
   }
   
