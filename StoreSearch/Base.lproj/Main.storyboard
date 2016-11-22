@@ -76,15 +76,17 @@
                         <outlet property="searchBar" destination="A7Q-Gh-ecn" id="NSX-sH-ZbX"/>
                         <outlet property="segmentedControl" destination="E7m-ev-3SP" id="49q-ns-HOh"/>
                         <outlet property="tableView" destination="tpQ-MU-Ueb" id="oQI-57-LNF"/>
+                        <segue destination="irp-iP-HF8" kind="presentation" identifier="ShowDetail" id="xD7-f0-vDX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-293" y="151"/>
         </scene>
-        <!--Detail View-->
+        <!--Detail View Controller-->
         <scene sceneID="Tpy-J2-hAD">
             <objects>
-                <viewController id="irp-iP-HF8" customClass="DetailView" sceneMemberID="viewController">
+                <viewController id="irp-iP-HF8" customClass="DetailViewController" customModule="StoreSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zpV-Ie-lpy"/>
                         <viewControllerLayoutGuide type="bottom" id="WbD-Pk-wT5"/>
@@ -101,6 +103,9 @@
                                         <rect key="frame" x="3" y="0.0" width="15" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="CloseButton"/>
+                                        <connections>
+                                            <action selector="close:" destination="irp-iP-HF8" eventType="touchUpInside" id="F4T-1y-WYe"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
@@ -111,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vm3-0d-Y7j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="885" y="33"/>
+            <point key="canvasLocation" x="493" y="152"/>
         </scene>
     </scenes>
     <resources>

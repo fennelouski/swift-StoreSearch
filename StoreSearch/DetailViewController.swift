@@ -8,17 +8,21 @@
 
 import UIKit
 
-class DetailViewController: UITableViewCell {
+class DetailViewController: UIViewController {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
     }
+  
+  @IBAction func close(_ sender: Any) {
+    dismiss(animated: true, completion: nil)
+  }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+  // MARK: - Memory Warning
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-
+  
 }
