@@ -12,7 +12,8 @@ class SearchViewController: UIViewController {
   
   @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var tableView: UITableView!
-  
+  @IBOutlet weak var segmentedControl: UISegmentedControl!
+
   var searchResults: [SearchResult] = []
   var hasSearched = false
   var isLoading = false
@@ -48,6 +49,11 @@ class SearchViewController: UIViewController {
     tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
     searchBar.becomeFirstResponder()
   }
+  
+  @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+    print("Segment changed: \(sender.selectedSegmentIndex)")
+  }
+  
   
   func iTunesUrl(searchText: String) -> URL {
     let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
