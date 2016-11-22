@@ -55,9 +55,19 @@ class SearchViewController: UIViewController {
   }
   
   
-  func iTunesUrl(searchText: String) -> URL {
+  func iTunesUrl(searchText: String, category: Int) -> URL {
+    let entityName: String
+    
+    switch category {
+    case 1: entityName = "musicTrack"
+    case 2: entityName = "software"
+    case 3: entityName = "ebook"
+    default: entityName = ""
+    }
+    
     let escapedSearchText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-    let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200", escapedSearchText)
+    let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200&entity=%@",
+                           escapedSearchText, entityName)
     let url = URL(string: urlString)
     return url!
   }
@@ -237,7 +247,7 @@ extension SearchViewController: UISearchBarDelegate {
       searchResults = []
       hasSearched = true
       
-      let url = iTunesUrl(searchText: searchBar.text!)
+      let url = iTunesUrl(searchText: searchBar.text!, category: segmentedControl.selectedSegmentIndex)
       let session = URLSession.shared
       dataTask = session.dataTask(with: url, completionHandler: {
         data, response, error in
