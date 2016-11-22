@@ -9,6 +9,8 @@
 import UIKit
 
 class SearchResultCell: UITableViewCell {
+  
+  var downloadTask: URLSessionDownloadTask?
 
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var artistNameLabel: UILabel!
@@ -35,6 +37,11 @@ class SearchResultCell: UITableViewCell {
       artistNameLabel.text = "Unknown"
     } else {
       artistNameLabel.text = String(format: "%@ (%@)", searchResult.artistName, kindForDisplay(searchResult.kind))
+    }
+    
+    artworkImageView.image = UIImage(named: "Placeholder")
+    if let smallUrl = URL(string: searchResult.artworkSmallUrl) {
+      downloadTask = artworkImageView.loadImage(url: smallUrl)
     }
   }
   
