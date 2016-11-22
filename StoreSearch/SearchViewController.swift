@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
   var dataTask: URLSessionDataTask?
   
   struct StandardMarginAndHeights {
-    static let topMarginForSearchBar: CGFloat = 108
+    static let topMarginForSearchAndCategoryBar: CGFloat = 108
     static let noMargin: CGFloat = 0
     static let rowHeight: CGFloat = 80
   }
@@ -34,7 +34,7 @@ class SearchViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.contentInset = UIEdgeInsets(top: StandardMarginAndHeights.topMarginForSearchBar,
+    tableView.contentInset = UIEdgeInsets(top: StandardMarginAndHeights.topMarginForSearchAndCategoryBar,
                                           left: StandardMarginAndHeights.noMargin,
                                           bottom: StandardMarginAndHeights.noMargin,
                                           right: StandardMarginAndHeights.noMargin)
@@ -51,7 +51,7 @@ class SearchViewController: UIViewController {
   }
   
   @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-    print("Segment changed: \(sender.selectedSegmentIndex)")
+    performSearch()
   }
   
   
@@ -223,6 +223,10 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    performSearch()
+  }
+  
+  func performSearch() {
     if !searchBar.text!.isEmpty {
       searchBar.resignFirstResponder()
       
