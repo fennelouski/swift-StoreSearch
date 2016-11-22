@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
   var dataTask: URLSessionDataTask?
   
   struct StandardMarginAndHeights {
-    static let topMarginForSearchBar: CGFloat = 64
+    static let topMarginForSearchBar: CGFloat = 108
     static let noMargin: CGFloat = 0
     static let rowHeight: CGFloat = 80
   }
