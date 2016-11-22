@@ -17,6 +17,7 @@
 		EB8F3AB61DDCB6D9003E5B9C /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB8F3AB51DDCB6D9003E5B9C /* LoadingCell.xib */; };
 		EBD402631DC95DA800B7AFF5 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD402621DC95DA800B7AFF5 /* SearchResultCell.swift */; };
 		EBE4DB0F1DE504B20059DE1B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE4DB0E1DE504B20059DE1B /* DetailViewController.swift */; };
+		EBE4DB111DE507B50059DE1B /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE4DB101DE507B50059DE1B /* DimmingPresentationController.swift */; };
 		EBE750A11DC8CF96004DA420 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE750A01DC8CF96004DA420 /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		EB8F3AB51DDCB6D9003E5B9C /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		EBD402621DC95DA800B7AFF5 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		EBE4DB0E1DE504B20059DE1B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		EBE4DB101DE507B50059DE1B /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		EBE750A01DC8CF96004DA420 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 				EB8F3AB51DDCB6D9003E5B9C /* LoadingCell.xib */,
 				EB74DB801DE4962C00D3C1A0 /* UIImageView+DownloadImage.swift */,
 				EBE4DB0E1DE504B20059DE1B /* DetailViewController.swift */,
+				EBE4DB101DE507B50059DE1B /* DimmingPresentationController.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB5B8CD81DC7FB0700494D42 /* SearchViewController.swift in Sources */,
+				EBE4DB111DE507B50059DE1B /* DimmingPresentationController.swift in Sources */,
 				EBE750A11DC8CF96004DA420 /* SearchResult.swift in Sources */,
 				EBD402631DC95DA800B7AFF5 /* SearchResultCell.swift in Sources */,
 				EBE4DB0F1DE504B20059DE1B /* DetailViewController.swift in Sources */,
