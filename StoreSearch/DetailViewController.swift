@@ -43,6 +43,11 @@ class DetailViewController: UIViewController {
                                blue: detailTintColor.blueness,
                                alpha: detailTintColor.opacity)
       popupView.layer.cornerRadius = detailDisplayProps.roundedCorners
+      let gestureRecognizer = UITapGestureRecognizer(target: self,
+                                                     action: #selector(close))
+      gestureRecognizer.cancelsTouchesInView = false
+      gestureRecognizer.delegate = self
+      view.addGestureRecognizer(gestureRecognizer)
     }
   
   @IBAction func close(_ sender: Any) {
@@ -59,7 +64,27 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: UIViewControllerTransitioningDelegate {
   func presentationController(forPresented presented: UIViewController,
-                              presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+                              presenting: UIViewController?,
+                              source: UIViewController) -> UIPresentationController? {
+    
     return DimmingPresentationController(presentedViewController: presented, presenting: presenting)
   }
 }
+
+extension DetailViewController: UIGestureRecognizerDelegate {
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+
+    return(touch.view === self.view)
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
