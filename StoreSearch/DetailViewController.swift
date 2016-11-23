@@ -18,6 +18,17 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var genreValue: UILabel!
   @IBOutlet weak var priceButton: UIButton!
   
+  struct detailTintColor {
+    static let redness: CGFloat = 20/255
+    static let greeness: CGFloat = 160/255
+    static let blueness: CGFloat = 160/255
+    static let opacity: CGFloat = 1
+  }
+  
+  struct detailDisplayProps {
+    static let roundedCorners: CGFloat = 10
+  }
+  
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     modalPresentationStyle = .custom
@@ -27,8 +38,11 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
       super.viewDidLoad()
       
-      view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
-      popupView.layer.cornerRadius = 10
+      view.tintColor = UIColor(red: detailTintColor.redness,
+                               green: detailTintColor.greeness,
+                               blue: detailTintColor.blueness,
+                               alpha: detailTintColor.opacity)
+      popupView.layer.cornerRadius = detailDisplayProps.roundedCorners
     }
   
   @IBAction func close(_ sender: Any) {
