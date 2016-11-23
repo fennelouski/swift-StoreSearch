@@ -11,6 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
   
   var searchResult: SearchResult!
+  var downloadTask: URLSessionDownloadTask?
 
   @IBOutlet weak var popupView: UIView!
   @IBOutlet weak var artworkImageView: UIImageView!
@@ -59,6 +60,12 @@ class DetailViewController: UIViewController {
     dismiss(animated: true, completion: nil)
   }
   
+  @IBAction func openInStore() {
+    if let url = URL(string: searchResult.storeUrl) {
+      UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+  }
+  
   func updateUI() {
     nameLabel.text = searchResult.name
     
@@ -85,6 +92,15 @@ class DetailViewController: UIViewController {
     }
     
     priceButton.setTitle(priceText, for: .normal)
+    
+    if let largeUrl = URL(string: searchResult.artworkLargeUrl) {
+      downloadTask = artworkImageView.loadImage(url: largeUrl)
+    }
+  }
+  
+  deinit {
+    print("deinit \(self)")
+    downloadTask?.cancel()
   }
 
   // MARK: - Memory Warning
