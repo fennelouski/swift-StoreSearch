@@ -172,6 +172,15 @@
                             <constraint firstItem="UkS-jz-Zj8" firstAttribute="centerX" secondItem="Y5p-PO-9Pr" secondAttribute="centerX" id="NeI-rR-qjw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="artistNameLabel" destination="4aB-bq-zU1" id="wOF-FO-CQf"/>
+                        <outlet property="artworkImageView" destination="e3E-Bh-zvp" id="JaZ-v5-fqq"/>
+                        <outlet property="genreValue" destination="Kw4-1h-3nY" id="D6R-wZ-6aR"/>
+                        <outlet property="kindValue" destination="LfJ-FE-aDk" id="usO-hb-POS"/>
+                        <outlet property="nameLabel" destination="AdW-vk-eRM" id="hdL-Np-tsJ"/>
+                        <outlet property="popupView" destination="UkS-jz-Zj8" id="KNW-B7-Saq"/>
+                        <outlet property="priceButton" destination="AP3-rN-5FS" id="Qj0-iG-XzL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vm3-0d-Y7j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
