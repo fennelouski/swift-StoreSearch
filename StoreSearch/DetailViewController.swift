@@ -18,9 +18,6 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var genreValue: UILabel!
   @IBOutlet weak var priceButton: UIButton!
   
-  
-  
-  
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     modalPresentationStyle = .custom
@@ -28,8 +25,9 @@ class DetailViewController: UIViewController {
   }
   
     override func viewDidLoad() {
-        super.viewDidLoad()
-
+      super.viewDidLoad()
+      
+      view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
     }
   
   @IBAction func close(_ sender: Any) {
@@ -37,11 +35,11 @@ class DetailViewController: UIViewController {
   }
 
   // MARK: - Memory Warning
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+
 }
 
 extension DetailViewController: UIViewControllerTransitioningDelegate {
