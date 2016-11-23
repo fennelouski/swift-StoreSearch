@@ -9,6 +9,8 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+  
+  var searchResult: SearchResult!
 
   @IBOutlet weak var popupView: UIView!
   @IBOutlet weak var artworkImageView: UIImageView!
@@ -48,10 +50,26 @@ class DetailViewController: UIViewController {
       gestureRecognizer.cancelsTouchesInView = false
       gestureRecognizer.delegate = self
       view.addGestureRecognizer(gestureRecognizer)
+      if searchResult != nil {
+        updateUI()
+      }
     }
   
   @IBAction func close(_ sender: Any) {
     dismiss(animated: true, completion: nil)
+  }
+  
+  func updateUI() {
+    nameLabel.text = searchResult.name
+    
+    if searchResult.artistName.isEmpty {
+      artistNameLabel.text = "Unknown"
+    } else {
+      artistNameLabel.text = searchResult.artistName
+    }
+    
+    kindValue.text = searchResult.kind
+    genreValue.text = searchResult.genre
   }
 
   // MARK: - Memory Warning

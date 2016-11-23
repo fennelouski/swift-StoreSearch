@@ -50,10 +50,17 @@ class SearchViewController: UIViewController {
     searchBar.becomeFirstResponder()
   }
   
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "ShowDetail" {
+      let detailViewController = segue.destination as! DetailViewController
+      let indexPath = sender as! IndexPath
+      let searchResult = searchResults[indexPath.row]
+      detailViewController.searchResult = searchResult
+    }
+  }
   @IBAction func segmentChanged(_ sender: UISegmentedControl) {
     performSearch()
   }
-  
   
   func iTunesUrl(searchText: String, category: Int) -> URL {
     let entityName: String
