@@ -54,6 +54,7 @@ class DetailViewController: UIViewController {
       if searchResult != nil {
         updateUI()
       }
+      view.backgroundColor = UIColor.clear
     }
   
   @IBAction func close(_ sender: Any) {
