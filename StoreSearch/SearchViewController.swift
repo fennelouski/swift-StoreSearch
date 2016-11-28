@@ -217,6 +217,20 @@ class SearchViewController: UIViewController {
     return searchResult
   }
   
+  func showNetworkError() {
+    let alert = UIAlertController(
+      title: "Whoops...",
+      message: "There was an error reading from the iTunes Store. Please try again.",
+      preferredStyle: .alert)
+    
+    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alert.addAction(action)
+    
+    present(alert, animated: true, completion: nil)
+  }
+  
+  
+  // MARK: - LandscapeView Functionality
   func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
     guard landscapeViewController == nil else { return }
     
@@ -232,21 +246,15 @@ class SearchViewController: UIViewController {
   }
   
   func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
-    // TODO: - Implement hide Landscape view function
+    if let controller = landscapeViewController {
+      controller.willMove(toParentViewController: nil)
+      controller.view.removeFromSuperview()
+      controller.removeFromParentViewController()
+      landscapeViewController = nil
+    }
   }
   
-  func showNetworkError() {
-    let alert = UIAlertController(
-      title: "Whoops...",
-      message: "There was an error reading from the iTunes Store. Please try again.",
-      preferredStyle: .alert)
-    
-    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-    alert.addAction(action)
-    
-    present(alert, animated: true, completion: nil)
-  }
-  
+
   // MARK: - Memory Warning
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
