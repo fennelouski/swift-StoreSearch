@@ -18,6 +18,7 @@ class SearchViewController: UIViewController {
   var hasSearched = false
   var isLoading = false
   var dataTask: URLSessionDataTask?
+  var landscapeViewController: LandscapeViewController?
   
   struct StandardMarginAndHeights {
     static let topMarginForSearchAndCategoryBar: CGFloat = 108
@@ -59,6 +60,19 @@ class SearchViewController: UIViewController {
       detailViewController.searchResult = searchResult
     }
   }
+  
+  override func willTransition(to newCollection: UITraitCollection,
+                               with coordinator: UIViewControllerTransitionCoordinator) {
+    super.willTransition(to: newCollection, with: coordinator)
+    
+    switch newCollection.verticalSizeClass {
+    case .compact:
+      showLandscape(with: coordinator)
+    case .regular, .unspecified:
+      hideLandscape(with: coordinator)
+    }
+  }
+  
   @IBAction func segmentChanged(_ sender: UISegmentedControl) {
     performSearch()
   }
@@ -201,6 +215,24 @@ class SearchViewController: UIViewController {
       searchResult.genre = (genres as! [String]).joined(separator: ", ")
     }
     return searchResult
+  }
+  
+  func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+    guard landscapeViewController == nil else { return }
+    
+    landscapeViewController = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController")
+                                                                                    as? LandscapeViewController
+    
+    if let controller = landscapeViewController {
+      controller.view.fame = view.bounds
+      view.addSubview(controller.view)
+      addChildViewController(controller)
+      controller.didMove(toParentViewController: self)
+    }
+  }
+  
+  func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+    // TODO: - Implement hide Landscape view function
   }
   
   func showNetworkError() {
