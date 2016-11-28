@@ -224,7 +224,7 @@ class SearchViewController: UIViewController {
                                                                                     as? LandscapeViewController
     
     if let controller = landscapeViewController {
-      controller.view.fame = view.bounds
+      controller.view.frame = view.bounds
       view.addSubview(controller.view)
       addChildViewController(controller)
       controller.didMove(toParentViewController: self)
