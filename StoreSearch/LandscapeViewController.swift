@@ -27,6 +27,7 @@ class LandscapeViewController: UIViewController {
     scrollView.translatesAutoresizingMaskIntoConstraints = true
     
     scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
+    scrollView.contentSize = CGSize(width: 1000, height: 1000)
   }
   
   override func viewWillLayoutSubviews() {
