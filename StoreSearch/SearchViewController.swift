@@ -14,11 +14,14 @@ class SearchViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var segmentedControl: UISegmentedControl!
 
+  private var downloadTask: URLSessionDownloadTask?
+  private var landscapeViewController: LandscapeViewController?
+
   var searchResults: [SearchResult] = []
   var hasSearched = false
   var isLoading = false
   var dataTask: URLSessionDataTask?
-  var landscapeViewController: LandscapeViewController?
+
   
   struct StandardMarginAndHeights {
     static let topMarginForSearchAndCategoryBar: CGFloat = 108

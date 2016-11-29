@@ -10,8 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
   
+  private var downloadTask: URLSessionDownloadTask?
   var searchResult: SearchResult!
-  var downloadTask: URLSessionDownloadTask?
   var dismissAnimationStyle = AnimationStyle.fade
 
   @IBOutlet weak var popupView: UIView!

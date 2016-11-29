@@ -10,7 +10,7 @@ import UIKit
 
 class SearchResultCell: UITableViewCell {
   
-  var downloadTask: URLSessionDownloadTask?
+  private var downloadTask: URLSessionDownloadTask?
 
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var artistNameLabel: UILabel!
