@@ -9,13 +9,19 @@
 import UIKit
 
 class LandscapeViewController: UIViewController {
+  
+  private var firstTime = true
+  var searchResults = [SearchResult]()
 
+  
   @IBOutlet weak var scrollView: UIScrollView!
   @IBOutlet weak var pageControl: UIPageControl!
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+
 
     view.removeConstraints(view.constraints)
     view.translatesAutoresizingMaskIntoConstraints = true
@@ -27,7 +33,7 @@ class LandscapeViewController: UIViewController {
     scrollView.translatesAutoresizingMaskIntoConstraints = true
     
     scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
-    scrollView.contentSize = CGSize(width: 1000, height: 1000)
+
   }
   
   override func viewWillLayoutSubviews() {
