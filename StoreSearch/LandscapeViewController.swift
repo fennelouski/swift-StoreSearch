@@ -67,10 +67,9 @@ class LandscapeViewController: UIViewController {
     
     let buttonWidth: CGFloat = 82
     let buttonHeight: CGFloat = 82
-    let paddingHorz = (itemWidth - buttonWidth)/2
-    let paddingVert = (itemHeight - buttonHeight)/2
-    let buttonsPerPage = columnsPerPage * rowsPerPage
-    let numPages = 1 + (searchResults.count - 1) / buttonsPerPage
+    let paddingHorz = (itemWidth - buttonWidth) / 2
+    let paddingVert = (itemHeight - buttonHeight) / 2
+
     
     let scrollViewWidth = scrollView.bounds.size.width
     
@@ -96,6 +95,9 @@ class LandscapeViewController: UIViewController {
       break
     }
     
+    let buttonsPerPage = columnsPerPage * rowsPerPage
+    let numPages = 1 + (searchResults.count - 1) / buttonsPerPage
+    
     for (index, SearchResult) in searchResults.enumerated() {
       let button = UIButton(type: .system)
       button.backgroundColor = UIColor.white
@@ -110,7 +112,8 @@ class LandscapeViewController: UIViewController {
       
       if row == rowsPerPage {
         row = 0
-        x += itemWidth; column += 1
+        x += itemWidth
+        column += 1
         if column == columnsPerPage {
           column = 0
           x += marginX * 2
