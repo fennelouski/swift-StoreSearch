@@ -11,6 +11,7 @@ import UIKit
 class LandscapeViewController: UIViewController {
   
   private var firstTime = true
+  private var downloadTasks = [URLSessionDownloadTask]()
   var searchResults = [SearchResult]()
 
   
@@ -147,11 +148,15 @@ class LandscapeViewController: UIViewController {
         }
       }
       downloadTask.resume()
+      downloadTasks.append(downloadTask)
     }
   }
   
   deinit {
     print("deinit \(self)")
+    for task in downloadTasks {
+      task.cancel()
+    }
   }
 
   
