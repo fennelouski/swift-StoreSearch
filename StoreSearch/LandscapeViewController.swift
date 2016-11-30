@@ -106,6 +106,8 @@ class LandscapeViewController: UIViewController {
                             width: buttonWidth,
                             height: buttonHeight)
       
+      downloadImage(for: SearchResult, andPlaceOn: button)
+      
       scrollView.addSubview(button)
       row += 1
       
@@ -127,6 +129,25 @@ class LandscapeViewController: UIViewController {
     
     pageControl.numberOfPages = numPages
     pageControl.currentPage = 0
+  }
+  
+  private func downloadImage(for searchResult: SearchResult,
+                             andPlaceOn button: UIButton) {
+    if let url = URL(string: searchResult.artworkSmallUrl) {
+      let downloadTask = URLSession.shared.downloadTask(with: url) {
+        [weak button] url, response, error in
+        if error == nil, let url = url,
+          let data = try? Data(contentsOf: url),
+          let image = UIImage(data: data) {
+          DispatchQueue.main.async {
+            if let button = button {
+              button.setImage(image, for: .normal)
+            }
+          }
+        }
+      }
+      downloadTask.resume()
+    }
   }
   
   deinit {
