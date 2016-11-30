@@ -107,9 +107,13 @@ class LandscapeViewController: UIViewController {
                             y: marginY + CGFloat(row) * itemHeight + paddingVert,
                             width: buttonWidth,
                             height: buttonHeight)
-      
+      button.imageView?.clipsToBounds = true
+      button.contentHorizontalAlignment = .fill
+      button.contentVerticalAlignment = .fill
+      button.imageView?.contentMode = .scaleAspectFill
+      button.imageView?.layer.cornerRadius = 8.0
+      button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
       downloadImage(for: SearchResult, andPlaceOn: button)
-      
       scrollView.addSubview(button)
       row += 1
       
@@ -143,11 +147,7 @@ class LandscapeViewController: UIViewController {
           let image = UIImage(data: data) {
           DispatchQueue.main.async {
             if let button = button {
-              button.imageView?.clipsToBounds = true
-              button.imageView?.contentMode = .scaleAspectFill
               let resizedImage = image.resizedImage(withBounds: CGSize(width: 60.0, height: 60.0))
-
-
               button.setImage(resizedImage, for: .normal)
             }
           }
