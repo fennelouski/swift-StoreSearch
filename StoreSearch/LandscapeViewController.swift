@@ -6,6 +6,7 @@
 //  Copyright © 2016 kickinbahk Productions. All rights reserved.
 //
 
+import AVFoundation
 import UIKit
 
 class LandscapeViewController: UIViewController {
@@ -142,7 +143,12 @@ class LandscapeViewController: UIViewController {
           let image = UIImage(data: data) {
           DispatchQueue.main.async {
             if let button = button {
-              button.setImage(image, for: .normal)
+              button.imageView?.clipsToBounds = true
+              button.imageView?.contentMode = .scaleAspectFill
+              let resizedImage = image.resizedImage(withBounds: CGSize(width: 60.0, height: 60.0))
+
+
+              button.setImage(resizedImage, for: .normal)
             }
           }
         }
