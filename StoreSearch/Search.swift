@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias SearchComplete = (Bool) -> Void
 
@@ -40,6 +41,7 @@ class Search {
   func performSearch(for text: String, category: Category, completion: @escaping SearchComplete) {
     if !text.isEmpty {
       dataTask?.cancel()
+      UIApplication.shared.isNetworkActivityIndicatorVisible = true
       
       state = .loading
       
@@ -49,10 +51,13 @@ class Search {
       dataTask = session.dataTask(with: url, completionHandler: {
         data, response, error in
   
-        self.state = .notSearchedYet
+        var newState = State.notSearchedYet
         var success = false
         
         if let error = error as? NSError, error.code == -999 {
+          DispatchQueue.main.sync {
+            self.state = .notSearchedYet
+          }
           return  // Search was Cancelled
         }
         
@@ -63,15 +68,17 @@ class Search {
           
           var searchResults = self.parse(dictionary: jsonDictionary)
           if searchResults.isEmpty {
-            self.state = .noResults
+            newState = .noResults
           } else {
             searchResults.sort(by: <)
-            self.state = .results(searchResults)
+            newState = .results(searchResults)
           }
           success = true
         }
         
         DispatchQueue.main.async {
+          self.state = newState
+          UIApplication.shared.isNetworkActivityIndicatorVisible = false
           completion(success)
         }
       })
