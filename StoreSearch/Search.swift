@@ -11,11 +11,8 @@ import Foundation
 typealias SearchComplete = (Bool) -> Void
 
 class Search {
-  var searchResults: [SearchResult] = []
-  var hasSearched = false
-  var isLoading = false
-  
   private var dataTask: URLSessionDataTask? = nil
+  private(set) var state: State = .notSearchedYet
   
   enum Category: Int {
     case all = 0
@@ -33,13 +30,18 @@ class Search {
     }
   }
   
+  enum State {
+    case notSearchedYet
+    case loading
+    case noResults
+    case results([SearchResult])
+  }
+  
   func performSearch(for text: String, category: Category, completion: @escaping SearchComplete) {
     if !text.isEmpty {
       dataTask?.cancel()
       
-      isLoading = true
-      hasSearched = true
-      searchResults = []
+      state = .loading
       
       let url = iTunesUrl(searchText: text, category: category)
 
@@ -47,6 +49,7 @@ class Search {
       dataTask = session.dataTask(with: url, completionHandler: {
         data, response, error in
   
+        self.state = .notSearchedYet
         var success = false
         
         if let error = error as? NSError, error.code == -999 {
@@ -58,17 +61,14 @@ class Search {
             let jsonData = data,
             let jsonDictionary = self.parse(json: jsonData) {
           
-          self.searchResults = self.parse(dictionary: jsonDictionary)
-          self.searchResults.sort(by: <)
-          
-          print("Success!")
-          self.isLoading = false
+          var searchResults = self.parse(dictionary: jsonDictionary)
+          if searchResults.isEmpty {
+            self.state = .noResults
+          } else {
+            searchResults.sort(by: <)
+            self.state = .results(searchResults)
+          }
           success = true
-        }
-  
-        if !success {
-          self.hasSearched = false
-          self.isLoading = false
         }
         
         DispatchQueue.main.async {
