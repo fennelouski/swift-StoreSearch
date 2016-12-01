@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias SearchComplete = (Bool) -> Void
+
 class Search {
   var searchResults: [SearchResult] = []
   var hasSearched = false
@@ -15,7 +17,7 @@ class Search {
   
   private var dataTask: URLSessionDataTask? = nil
   
-  func performSearch(for text: String, category: Int) {
+  func performSearch(for text: String, category: Int, completion: @escaping SearchComplete) {
     if !text.isEmpty {
       dataTask?.cancel()
       
@@ -28,6 +30,8 @@ class Search {
       let session = URLSession.shared
       dataTask = session.dataTask(with: url, completionHandler: {
         data, response, error in
+  
+        var success = false
         
         if let error = error as? NSError, error.code == -999 {
           return  // Search was Cancelled
@@ -43,11 +47,17 @@ class Search {
           
           print("Success!")
           self.isLoading = false
-          return
+          success = true
         }
-        print("Failure! \(response)")
-        self.hasSearched = false
-        self.isLoading = false
+  
+        if !success {
+          self.hasSearched = false
+          self.isLoading = false
+        }
+        
+        DispatchQueue.main.async {
+          completion(success)
+        }
       })
       dataTask?.resume()
     }
