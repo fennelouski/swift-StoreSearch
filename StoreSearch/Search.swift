@@ -16,7 +16,41 @@ class Search {
   private var dataTask: URLSessionDataTask? = nil
   
   func performSearch(for text: String, category: Int) {
-    print("Searching")
+    if !text.isEmpty {
+      dataTask?.cancel()
+      
+      isLoading = true
+      hasSearched = true
+      searchResults = []
+      
+      let url = iTunesUrl(searchText: text, category: category)
+
+      let session = URLSession.shared
+      dataTask = session.dataTask(with: url, completionHandler: {
+        data, response, error in
+        
+        if let error = error as? NSError, error.code == -999 {
+          return  // Search was Cancelled
+        }
+        
+        if let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode == 200,
+            let jsonData = data,
+            let jsonDictionary = self.parse(json: jsonData) {
+          
+          self.searchResults = self.parse(dictionary: jsonDictionary)
+          self.searchResults.sort(by: <)
+          
+          print("Success!")
+          self.isLoading = false
+          return
+        }
+        print("Failure! \(response)")
+        self.hasSearched = false
+        self.isLoading = false
+      })
+      dataTask?.resume()
+    }
   }
   
   private func iTunesUrl(searchText: String, category: Int) -> URL {
