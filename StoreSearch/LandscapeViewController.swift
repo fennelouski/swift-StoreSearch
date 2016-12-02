@@ -21,8 +21,6 @@ class LandscapeViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-
 
     view.removeConstraints(view.constraints)
     view.translatesAutoresizingMaskIntoConstraints = true
@@ -61,6 +59,17 @@ class LandscapeViewController: UIViewController {
         showNothingFoundLabel()
       case .results(let list):
         tileButtons(list)
+      }
+    }
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "ShowDetail" {
+      if case .results(let list) = search.state {
+        let detailViewController = segue.destination as! DetailViewController
+        
+        let searchResult = list[(sender as! UIButton).tag - 2000]
+        detailViewController.searchResult = searchResult
       }
     }
   }
@@ -116,14 +125,20 @@ class LandscapeViewController: UIViewController {
                             y: marginY + CGFloat(row) * itemHeight + paddingVert,
                             width: buttonWidth,
                             height: buttonHeight)
+      
+      button.tag = 2000 + index
+      button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+      
       button.imageView?.clipsToBounds = true
       button.contentHorizontalAlignment = .fill
       button.contentVerticalAlignment = .fill
       button.imageView?.contentMode = .scaleAspectFill
       button.imageView?.layer.cornerRadius = 8.0
       button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+      
       downloadImage(for: SearchResult, andPlaceOn: button)
       scrollView.addSubview(button)
+      
       row += 1
       
       if row == rowsPerPage {
@@ -183,6 +198,10 @@ class LandscapeViewController: UIViewController {
     label.center = CGPoint(x: scrollView.bounds.midX, y: scrollView.bounds.midY)
     
     view.addSubview(label)
+  }
+  
+  func buttonPressed(_ sender: UIButton) {
+    performSegue(withIdentifier: "ShowDetail", sender: sender)
   }
   
   func searchResultsReceived() {

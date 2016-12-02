@@ -133,6 +133,11 @@ class SearchViewController: UIViewController {
       }, completion: { _ in
         controller.view.removeFromSuperview()
         controller.removeFromParentViewController()
+        
+        if self.presentedViewController != nil {
+          self.dismiss(animated: true, completion: nil)
+        }
+        
         self.landscapeViewController = nil
       })
     }
