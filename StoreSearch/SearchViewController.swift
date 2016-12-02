@@ -38,15 +38,17 @@ class SearchViewController: UIViewController {
                                           left: StandardMarginAndHeights.noMargin,
                                           bottom: StandardMarginAndHeights.noMargin,
                                           right: StandardMarginAndHeights.noMargin)
+    
     var cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
     tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
-    tableView.rowHeight = StandardMarginAndHeights.rowHeight
     
     cellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
-    cellNib = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
-    
     tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
+    
+    cellNib = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
     tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
+    
+    tableView.rowHeight = StandardMarginAndHeights.rowHeight
 
     searchBar.becomeFirstResponder()
   }
