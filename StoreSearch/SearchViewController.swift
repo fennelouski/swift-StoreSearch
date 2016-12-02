@@ -15,7 +15,7 @@ class SearchViewController: UIViewController {
   @IBOutlet weak var segmentedControl: UISegmentedControl!
 
   private var downloadTask: URLSessionDownloadTask?
-  private var landscapeViewController: LandscapeViewController?
+  var landscapeViewController: LandscapeViewController?
   
   let search = Search()
   
@@ -155,10 +155,13 @@ extension SearchViewController: UISearchBarDelegate {
       search.performSearch(for: searchBar.text!,
                            category: category,
                            completion: { success in
+                            
         if !success {
           self.showNetworkError()
         }
+                            
         self.tableView.reloadData()
+        self.landscapeViewController?.searchResultsReceived()
       })
       
       tableView.reloadData()
