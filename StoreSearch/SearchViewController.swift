@@ -65,6 +65,7 @@ class SearchViewController: UIViewController {
         let indexPath = sender as! IndexPath
         let searchResult = list[indexPath.row]
         detailViewController.searchResult = searchResult
+        detailViewController.isPopUp = true
       }
     }
   }
