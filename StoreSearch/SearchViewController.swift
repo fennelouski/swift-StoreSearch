@@ -39,6 +39,8 @@ class SearchViewController: UIViewController {
                                           bottom: StandardMarginAndHeights.noMargin,
                                           right: StandardMarginAndHeights.noMargin)
     
+    title = NSLocalizedString("Search", comment: "Split-View Master Button")
+    
     var cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
     tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
     
