@@ -254,7 +254,9 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="H9R-Xd-PWZ" firstAttribute="leading" secondItem="UkS-jz-Zj8" secondAttribute="leading" constant="10" id="1KQ-he-nBV"/>
+                                    <constraint firstItem="H9R-Xd-PWZ" firstAttribute="leading" secondItem="UkS-jz-Zj8" secondAttribute="leading" constant="10" id="1KQ-he-nBV">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                    </constraint>
                                     <constraint firstItem="LfJ-FE-aDk" firstAttribute="leading" secondItem="BBX-ka-pD3" secondAttribute="trailing" constant="20" id="3zU-68-SXv"/>
                                     <constraint firstItem="AP3-rN-5FS" firstAttribute="top" secondItem="Kw4-1h-3nY" secondAttribute="bottom" constant="10" id="6zD-NM-qEI">
                                         <variation key="heightClass=regular-widthClass=regular" constant="30"/>
@@ -263,7 +265,9 @@
                                         <variation key="heightClass=regular-widthClass=regular" constant="500"/>
                                     </constraint>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kw4-1h-3nY" secondAttribute="trailing" constant="10" id="Cvh-Ue-rYQ"/>
-                                    <constraint firstItem="BBX-ka-pD3" firstAttribute="leading" secondItem="UkS-jz-Zj8" secondAttribute="leading" constant="10" id="EMs-rg-uRP"/>
+                                    <constraint firstItem="BBX-ka-pD3" firstAttribute="leading" secondItem="UkS-jz-Zj8" secondAttribute="leading" constant="10" id="EMs-rg-uRP">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                    </constraint>
                                     <constraint firstItem="Kw4-1h-3nY" firstAttribute="baseline" secondItem="H9R-Xd-PWZ" secondAttribute="baseline" id="F3n-kE-yto"/>
                                     <constraint firstAttribute="bottom" secondItem="AP3-rN-5FS" secondAttribute="bottom" constant="4" id="FFd-uP-f3Z">
                                         <variation key="heightClass=regular-widthClass=regular" constant="24"/>
@@ -273,7 +277,9 @@
                                         <variation key="heightClass=regular-widthClass=regular" constant="28"/>
                                     </constraint>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AdW-vk-eRM" secondAttribute="trailing" constant="10" id="LFc-mt-DfT"/>
-                                    <constraint firstItem="4aB-bq-zU1" firstAttribute="leading" secondItem="UkS-jz-Zj8" secondAttribute="leading" constant="10" id="Slq-W1-xYH"/>
+                                    <constraint firstItem="4aB-bq-zU1" firstAttribute="leading" secondItem="UkS-jz-Zj8" secondAttribute="leading" constant="10" id="Slq-W1-xYH">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                    </constraint>
                                     <constraint firstItem="BBX-ka-pD3" firstAttribute="top" secondItem="4aB-bq-zU1" secondAttribute="bottom" constant="5" id="TDV-rl-r1S">
                                         <variation key="heightClass=regular-widthClass=regular" constant="25"/>
                                     </constraint>
@@ -282,7 +288,9 @@
                                     <constraint firstItem="e3E-Bh-zvp" firstAttribute="top" secondItem="UkS-jz-Zj8" secondAttribute="top" constant="9" id="qMa-A6-gQr">
                                         <variation key="heightClass=regular-widthClass=regular" constant="29"/>
                                     </constraint>
-                                    <constraint firstItem="AdW-vk-eRM" firstAttribute="leading" secondItem="UkS-jz-Zj8" secondAttribute="leading" constant="10" id="qbL-7U-Hy3"/>
+                                    <constraint firstItem="AdW-vk-eRM" firstAttribute="leading" secondItem="UkS-jz-Zj8" secondAttribute="leading" constant="10" id="qbL-7U-Hy3">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                    </constraint>
                                     <constraint firstAttribute="trailing" secondItem="AP3-rN-5FS" secondAttribute="trailing" constant="8" id="sHj-bi-V0Z"/>
                                     <constraint firstItem="H9R-Xd-PWZ" firstAttribute="top" secondItem="BBX-ka-pD3" secondAttribute="bottom" constant="4" id="sKI-ky-5lu">
                                         <variation key="heightClass=regular-widthClass=regular" constant="24"/>
