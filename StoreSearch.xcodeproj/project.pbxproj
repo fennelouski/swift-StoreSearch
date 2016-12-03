@@ -14,9 +14,9 @@
 		EB5B8CDB1DC7FB0700494D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB5B8CD91DC7FB0700494D42 /* Main.storyboard */; };
 		EB5B8CDD1DC7FB0700494D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB5B8CDC1DC7FB0700494D42 /* Assets.xcassets */; };
 		EB74DB811DE4962C00D3C1A0 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB74DB801DE4962C00D3C1A0 /* UIImageView+DownloadImage.swift */; };
-		EB8AB4381DCBD93000EC73C4 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB8AB4371DCBD93000EC73C4 /* NothingFoundCell.xib */; };
 		EB8F3AB61DDCB6D9003E5B9C /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB8F3AB51DDCB6D9003E5B9C /* LoadingCell.xib */; };
 		EB95687E1DEF309C00212F70 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB95687D1DEF309C00212F70 /* UIImage+Resize.swift */; };
+		EBA4101A1DF3463100350B63 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBA4101C1DF3463100350B63 /* NothingFoundCell.xib */; };
 		EBAAE22E1DE8E3F500D90577 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAE22D1DE8E3F500D90577 /* GradientView.swift */; };
 		EBAAE2301DE8F1A600D90577 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAE22F1DE8F1A600D90577 /* BounceAnimationController.swift */; };
 		EBAAE2321DE8FB5700D90577 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAAE2311DE8FB5700D90577 /* SlideOutAnimationController.swift */; };
@@ -38,9 +38,10 @@
 		EB5B8CDC1DC7FB0700494D42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB5B8CE11DC7FB0700494D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB74DB801DE4962C00D3C1A0 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
-		EB8AB4371DCBD93000EC73C4 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		EB8F3AB51DDCB6D9003E5B9C /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		EB95687D1DEF309C00212F70 /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		EBA4101B1DF3463100350B63 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NothingFoundCell.xib; sourceTree = "<group>"; };
+		EBA4101D1DF3471F00350B63 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = nl.lproj/NothingFoundCell.xib; sourceTree = "<group>"; };
 		EBAAE22D1DE8E3F500D90577 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		EBAAE22F1DE8F1A600D90577 /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
 		EBAAE2311DE8FB5700D90577 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
@@ -90,7 +91,7 @@
 				EBE750A01DC8CF96004DA420 /* SearchResult.swift */,
 				EB3901301DC9534400DBB595 /* SearchResultCell.xib */,
 				EBD402621DC95DA800B7AFF5 /* SearchResultCell.swift */,
-				EB8AB4371DCBD93000EC73C4 /* NothingFoundCell.xib */,
+				EBA4101C1DF3463100350B63 /* NothingFoundCell.xib */,
 				EB8F3AB51DDCB6D9003E5B9C /* LoadingCell.xib */,
 				EB74DB801DE4962C00D3C1A0 /* UIImageView+DownloadImage.swift */,
 				EBE4DB0E1DE504B20059DE1B /* DetailViewController.swift */,
@@ -150,6 +151,7 @@
 			knownRegions = (
 				en,
 				Base,
+				nl,
 			);
 			mainGroup = EB5B8CC91DC7FB0700494D42;
 			productRefGroup = EB5B8CD31DC7FB0700494D42 /* Products */;
@@ -169,7 +171,7 @@
 				EB5B8CDD1DC7FB0700494D42 /* Assets.xcassets in Resources */,
 				EB8F3AB61DDCB6D9003E5B9C /* LoadingCell.xib in Resources */,
 				EB3901311DC9534400DBB595 /* SearchResultCell.xib in Resources */,
-				EB8AB4381DCBD93000EC73C4 /* NothingFoundCell.xib in Resources */,
+				EBA4101A1DF3463100350B63 /* NothingFoundCell.xib in Resources */,
 				EB5B8CDB1DC7FB0700494D42 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +211,15 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		EBA4101C1DF3463100350B63 /* NothingFoundCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EBA4101B1DF3463100350B63 /* en */,
+				EBA4101D1DF3471F00350B63 /* nl */,
+			);
+			name = NothingFoundCell.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -216,6 +227,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -266,6 +278,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
