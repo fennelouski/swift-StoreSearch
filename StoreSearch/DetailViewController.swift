@@ -126,7 +126,7 @@ class DetailViewController: UIViewController {
       downloadTask = artworkImageView.loadImage(url: largeUrl)
     }
     
-    UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {() -> Void in
+    UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: { _ in
         self.popupView.isHidden = false
     }, completion: { _ in })
 
