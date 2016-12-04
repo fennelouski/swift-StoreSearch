@@ -337,10 +337,10 @@
             </objects>
             <point key="canvasLocation" x="917" y="724"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="yuJ-Ac-yPz">
             <objects>
-                <tableViewController id="WP8-mh-1Av" sceneMemberID="viewController">
+                <tableViewController id="WP8-mh-1Av" customClass="MenuViewController" customModule="StoreSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="w37-TN-2p2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

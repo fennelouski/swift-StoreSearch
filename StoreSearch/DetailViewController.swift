@@ -53,36 +53,43 @@ class DetailViewController: UIViewController {
     transitioningDelegate = self
   }
   
-    override func viewDidLoad() {
-      super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    view.tintColor = UIColor(red: detailTintColor.redness,
+                             green: detailTintColor.greeness,
+                             blue: detailTintColor.blueness,
+                             alpha: detailTintColor.opacity)
+    popupView.layer.cornerRadius = detailDisplayProps.roundedCorners
+
+    if isPopUp {
+      let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
+      gestureRecognizer.cancelsTouchesInView = false
+      gestureRecognizer.delegate = self
+      view.addGestureRecognizer(gestureRecognizer)
       
-      view.tintColor = UIColor(red: detailTintColor.redness,
-                               green: detailTintColor.greeness,
-                               blue: detailTintColor.blueness,
-                               alpha: detailTintColor.opacity)
-      popupView.layer.cornerRadius = detailDisplayProps.roundedCorners
-
-      if isPopUp {
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
-        gestureRecognizer.cancelsTouchesInView = false
-        gestureRecognizer.delegate = self
-        view.addGestureRecognizer(gestureRecognizer)
-        
-        if searchResult != nil {
-          updateUI()
-        }
-        
-        view.backgroundColor = UIColor.clear
-      } else {
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
-        popupView.isHidden = true
-
-        if let displayName = Bundle.main.localizedInfoDictionary?["CFBundleDisplayName"] as? String {
-          title = displayName
-        }
+      if searchResult != nil {
+        updateUI()
       }
       
+      view.backgroundColor = UIColor.clear
+    } else {
+      view.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
+      popupView.isHidden = true
+
+      if let displayName = Bundle.main.localizedInfoDictionary?["CFBundleDisplayName"] as? String {
+        title = displayName
+      }
     }
+    
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "ShowMenu" {
+      let controller = segue.destination as! MenuViewController
+      controller.delegate = self
+    }
+  }
   
   @IBAction func close(_ sender: Any) {
     dismissAnimationStyle = .slide
@@ -176,7 +183,11 @@ extension DetailViewController: UIGestureRecognizerDelegate {
   }
 }
 
-
+extension DetailViewController: MenuViewControllerDelegate {
+  func menuViewControllerSendSupportEmail(_: MenuViewController) {
+    
+  }
+}
 
 
 
