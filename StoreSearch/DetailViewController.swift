@@ -61,13 +61,7 @@ class DetailViewController: UIViewController {
                                blue: detailTintColor.blueness,
                                alpha: detailTintColor.opacity)
       popupView.layer.cornerRadius = detailDisplayProps.roundedCorners
-//      let gestureRecognizer = UITapGestureRecognizer(target: self,
-//                                                     action: #selector(close))
-//      gestureRecognizer.cancelsTouchesInView = false
-//      gestureRecognizer.delegate = self
-//      view.addGestureRecognizer(gestureRecognizer)
-//      view.backgroundColor = UIColor.clear
-      
+
       if isPopUp {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
         gestureRecognizer.cancelsTouchesInView = false
@@ -131,7 +125,11 @@ class DetailViewController: UIViewController {
     if let largeUrl = URL(string: searchResult.artworkLargeUrl) {
       downloadTask = artworkImageView.loadImage(url: largeUrl)
     }
-    popupView.isHidden = false
+    
+    UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {() -> Void in
+        self.popupView.isHidden = false
+    }, completion: { _ in })
+
   }
   
   deinit {
