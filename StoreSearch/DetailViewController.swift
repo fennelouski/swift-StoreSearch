@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import MessageUI
 
 class DetailViewController: UIViewController {
   
@@ -184,8 +185,23 @@ extension DetailViewController: UIGestureRecognizerDelegate {
 }
 
 extension DetailViewController: MenuViewControllerDelegate {
-  func menuViewControllerSendSupportEmail(_: MenuViewController) {
-    
+  func menuViewControllerSendSupportEmail(_ controller: MenuViewController) {
+    dismiss(animated: true) {
+      if MFMailComposeViewController.canSendMail() {
+        let controller = MFMailComposeViewController()
+        controller.setSubject(NSLocalizedString("Support Request",
+                                                comment: "Email subject"))
+        controller.setToRecipients(["josiah@kickinbahkproductions.com"])
+        controller.mailComposeDelegate = self
+        self.present(controller, animated: true, completion: nil)
+      }
+    }
+  }
+}
+
+extension DetailViewController: MFMailComposeViewControllerDelegate {
+  func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    dismiss(animated: true, completion: nil)
   }
 }
 
